@@ -61,7 +61,7 @@ class EmployeeController extends Controller
         $message = "";
         $userinfo = Employee::find($user);
         if($userinfo){
-            $message = "User has been verified";
+            $message = "User ". $userinfo->fullname ." has been verified";
         }else{
             $message = "User has not been verified";
         }
