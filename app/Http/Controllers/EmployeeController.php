@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Employee;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class EmployeeController extends Controller
 {
@@ -69,7 +70,13 @@ class EmployeeController extends Controller
             'photo' => ['image', 'mimes:jpeg,png,jpg', 'max:2048'],
         ]);
         $imageName = $request->oldphoto;
+        $image_path = public_path("/asset/images/".$request->oldphoto);
+        //dd($image_path);
+        
         if($request->hasFile('photo')){
+            if (File::exists($image_path)) {
+                unlink($image_path);
+            }
             $imageName = time().'.'.request()->photo->getClientOriginalExtension();
             request()->photo->move(public_path('asset/images'), $imageName);
         }
