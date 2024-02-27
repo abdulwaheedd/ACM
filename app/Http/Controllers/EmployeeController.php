@@ -34,8 +34,11 @@ class EmployeeController extends Controller
             'fullname' => 'required',
             'photo' => ['image', 'mimes:jpeg,png,jpg', 'max:2048'],
         ]);
-        $imageName = time().'.'.request()->photo->getClientOriginalExtension();
-        request()->photo->move(public_path('asset/images'), $imageName);
+        $imageName = "";
+        if($request->hasFile('photo')){
+            $imageName = time().'.'.request()->photo->getClientOriginalExtension();
+            request()->photo->move(public_path('asset/images'), $imageName);
+        }
         Employee::create([
             'fullname'=>$request->fullname,
             'accessPermission'=>$request->acPermission,

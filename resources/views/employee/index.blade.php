@@ -2,6 +2,17 @@
 @section('content')
  <div class="container">
     <div class="text-right">
+        <form action="">
+            <div class="input-group">
+                <label for="qrCode">Select Qr Code: &nbsp;</label>
+                <div class="form-outline" data-mdb-input-init>
+                    <input type="file" id="form1" class="form-control" />
+                </div>
+                <button type="button" class="btn btn-primary" data-mdb-ripple-init>
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </form>
         <a href="{{ route('employee.create') }}" class="btn btn-sm btn-success">Create Employee</a>
     </div>
   <table class="table">
@@ -16,21 +27,20 @@
    </tr>
   </thead>
   <tbody>
-   @php($i=1)
    @foreach ($employees as $employee)
     <tr>
-     <td>{{ $i++ }}</td>
+     <td>{{ $employee->id }}</td>
      <td>{{ $employee->fullname }}</td>
      <td>{{ $employee->accessPermission==1?"Yes":"No" }}</td>
      <td>{{ $employee->isActive==1?"Yes":"No" }}</td>
      <td><img src="/asset/images/{{ $employee->photo }}" alt="" width="50"></td>
      <td>
-      <a href="{{ route('employee.show',['employee'=>$employee->id]) }}" class="btn btn-xs btn-primary">Print</a> |
-        <a href="{{ route('employee.edit',['employee'=>$employee->id]) }}" class="btn btn-xs btn-info">Edit</a> |
+      <a href="{{ route('employee.show',['employee'=>$employee->id]) }}" class="btn btn-xs btn-primary"><i class="fas fa-circle-info"></i></a> |
+        <a href="{{ route('employee.edit',['employee'=>$employee->id]) }}" class="btn btn-xs btn-info"><i class="fas fa-edit"></i></a> |
      <form method="POST" action="{{ route('employee.destroy',['employee'=>$employee->id]) }}" style="display:inline" onsubmit="return confirm('Are you sure!?')">
         {{ csrf_field() }}
         {{ method_field('DELETE') }}
-        <input type="submit" class="btn btn-xs btn-danger" value="Delete">
+        <button type="submit" class="btn btn-xs btn-danger"><i class="fas fa-trash"></i><button>
     </form>
      </td>
     </tr>    
