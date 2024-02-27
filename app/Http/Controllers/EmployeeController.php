@@ -94,6 +94,11 @@ class EmployeeController extends Controller
      */
     public function destroy($employee)
     {
+        $emp = Employee::find($employee);
+        $image_path = public_path("/asset/images/".$emp->photo);
+        if (File::exists($image_path)) {
+            unlink($image_path);
+        }
         Employee::where('id',$employee)->delete();
         return redirect()->route('employee.index');
     }
