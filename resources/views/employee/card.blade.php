@@ -3,7 +3,10 @@
  <div class="container">
     <div class="card justify-content-center align-items-center" id="empCard" style="width: 18rem;">
       {{-- <img src="data:image/png;base64, {!!  base64_encode($withImage) !!}"/> --}}
-      <a href="" id="qrcodedownload">{!! QrCode::size(150)->generate("{{ $empinfo->id }}") !!}</a>
+      @php
+          $qrcodeurl = route('user.verify',['user'=>$empinfo->id]);
+      @endphp
+      <a href="" id="qrcodedownload">{!! QrCode::size(150)->generate($qrcodeurl) !!}</a>
       <div class="card-body">
         <table class="table">
           <tr>

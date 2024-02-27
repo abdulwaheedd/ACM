@@ -2,11 +2,12 @@
 @section('content')
  <div class="container">
     <div class="text-right">
-        <form action="">
+        <br>
+        <form action="" class="form-inline">
             <div class="input-group">
-                <label for="qrCode">Select Qr Code: &nbsp;</label>
+                <label for="qrCode">Enter Employee Id: &nbsp;</label>
                 <div class="form-outline" data-mdb-input-init>
-                    <input type="file" id="form1" class="form-control" />
+                    <input type="text" id="form1" class="form-control" />
                 </div>
                 <button type="button" class="btn btn-primary" data-mdb-ripple-init>
                     <i class="fas fa-search"></i>

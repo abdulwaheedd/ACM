@@ -56,6 +56,17 @@ class EmployeeController extends Controller
         //$qrCode = $qrCode = QrCode::size(200)->format('png')->merge('/public/asset/images/'.$employee->photo, .4)->generate($employee->fullname);
         return view('employee.card',['empinfo'=>$employee]);
     }
+    public function VerifyUser($user)
+    {
+        $message = "";
+        $userinfo = Employee::find($user);
+        if($userinfo){
+            $message = "User has been verified";
+        }else{
+            $message = "User has not been verified";
+        }
+        return view('employee.verify',['msg'=>$message]);
+    }
 
     /**
      * Show the form for editing the specified resource.
