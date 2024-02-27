@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Employee;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class EmployeeController extends Controller
 {
@@ -49,7 +50,8 @@ class EmployeeController extends Controller
      */
     public function show(Employee $employee)
     {
-        //
+        //$qrCode = $qrCode = QrCode::size(200)->format('png')->merge('/public/asset/images/'.$employee->photo, .4)->generate($employee->fullname);
+        return view('employee.card',['empinfo'=>$employee]);
     }
 
     /**
